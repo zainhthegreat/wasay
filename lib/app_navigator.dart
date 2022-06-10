@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasay/app_cubit.dart';
 import 'package:wasay/features/Login/login_screen_ui.dart';
 
+import 'app_repo.dart';
 import 'app_state.dart';
+import 'features/Login/login_screens_bloc.dart';
 
 class AppNavigator extends StatelessWidget {
   const AppNavigator({Key? key}) : super(key: key);
@@ -15,8 +17,19 @@ class AppNavigator extends StatelessWidget {
       child:  BlocBuilder<AppCubit,AppState>(
         builder: (context, state) {
         return Navigator(
-          pages: const[
-          MaterialPage(child: LoginScreenUI())
+          pages:[
+
+            if(state is LoginAppState)
+          MaterialPage(child:
+          BlocProvider(
+              create: (BuildContext context) => LoginScreenBloc(
+                  appRepo: context.read<AppRepo>(),
+                  appCubit: context.read<AppCubit>()),
+              child: const LoginScreenUI()),
+          )
+
+
+
           ],
           onPopPage: (route, result) => route.didPop(result),
         );

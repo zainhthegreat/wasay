@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
+        backgroundColor: Colors.deepPurple,
       ),
       home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
         child: BlocProvider(
