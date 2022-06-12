@@ -20,9 +20,12 @@ class AppCubit extends Cubit<AppState>
 
 
 
+
   //functions
   showSignUpScreen()=>emit(SignUpAppState());
   showLoginScreen()=>emit(LoginAppState());
   showHomeScreen()=> emit(HomeAppState());
+
+
 
 }
