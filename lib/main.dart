@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,10 +10,8 @@ import 'app_repo.dart';
 
 
 
-
-Future<void> main() async {
+void main() {
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +38,6 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
 
-       // home: HomeScreenUI(),
 
       home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
         child: BlocProvider(

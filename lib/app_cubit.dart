@@ -18,6 +18,7 @@ class AppCubit extends Cubit<AppState>
 
   AppCubit.home({required this.appRepo}): super(HomeAppState());
 
+  AppCubit.bookings({required this.appRepo}): super(BookingsAppState());
 
 
 
@@ -25,6 +26,8 @@ class AppCubit extends Cubit<AppState>
   showSignUpScreen()=>emit(SignUpAppState());
   showLoginScreen()=>emit(LoginAppState());
   showHomeScreen()=> emit(HomeAppState());
+  showBookingScreen()=> emit(BookingsAppState());
+
 
 
 
