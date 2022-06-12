@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasay/app_cubit.dart';
+import 'package:wasay/features/Bookings/bookings_screen_ui.dart';
 import 'package:wasay/features/Home/home_screen_ui.dart';
 import 'package:wasay/features/Login/login_screen_ui.dart';
 
 import 'app_repo.dart';
 import 'app_state.dart';
+import 'features/Bookings/bookings_screen_bloc.dart';
 import 'features/Home/home_screen_bloc.dart';
 import 'features/Login/login_screens_bloc.dart';
 import 'features/Signup/signup_screen_ui.dart';
@@ -50,6 +52,14 @@ class AppNavigator extends StatelessWidget {
                   child: const HomeScreenUI()),
               ),
 
+            if(state is BookingsAppState)
+              MaterialPage(child:
+              BlocProvider(
+                  create: (BuildContext context) => BookingsScreenBloc(
+                      appRepo: context.read<AppRepo>(),
+                      appCubit: context.read<AppCubit>()),
+                  child: const BookingsScreenUI()),
+              ),
 
 
           ],

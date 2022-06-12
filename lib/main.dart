@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:map_location_picker/generated/l10n.dart' as location_picker;
-import 'package:wasay/features/AccountDetails/accdetails_screen_ui.dart';
-import 'package:wasay/features/FeedBack/feedback_screen_ui.dart';
-import 'package:wasay/features/Signup/signup_screen_ui.dart';
 
 import 'app_cubit.dart';
 import 'app_navigator.dart';
 import 'app_repo.dart';
-import 'features/Bookings/bookings_screen_ui.dart';
-import 'features/Home/home_screen_ui.dart';
 
 
 
@@ -43,15 +38,14 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
 
-        home: HomeScreenUI(),
 
-      // home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
-      //   child: BlocProvider(
-      //     create: (BuildContext context) =>
-      //         AppCubit(appRepo: context.read<AppRepo>()),
-      //     child: const AppNavigator(),
-      //   ),
-      // )
+      home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
+        child: BlocProvider(
+          create: (BuildContext context) =>
+              AppCubit(appRepo: context.read<AppRepo>()),
+          child: const AppNavigator(),
+        ),
+      )
 
     );
   }

@@ -9,10 +9,10 @@ class SignUpAppState extends AppState{}
 
 class HomeAppState extends AppState{}
 
-class BookingsState extends AppState{}
+class BookingsAppState extends AppState{}
 
-class AccountDetailsState extends AppState{}
+class AccountDetailsAppState extends AppState{}
 
-class PreviousBookngsState extends AppState{}
+class PreviousBookingsAppState extends AppState{}
 
-class FeedbackState extends AppState{}
+class FeedbackAppState extends AppState{}

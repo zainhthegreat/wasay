@@ -1,20 +1,19 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Login/login_screen_events.dart';
 import 'bookings_screen_bloc.dart';
 
-class Bookings extends StatefulWidget {
-  const Bookings({Key? key}) : super(key: key);
+class BookingsScreenUI extends StatefulWidget {
+  const BookingsScreenUI({Key? key}) : super(key: key);
 
   @override
-  State<Bookings> createState() => _BookingsState();
+  State<BookingsScreenUI> createState() => _BookingsScreenUIState();
 }
 
-class _BookingsState extends State<Bookings> {
-  TextEditingController? Loc;
-  TextEditingController? Problem;
+class _BookingsScreenUIState extends State<BookingsScreenUI> {
+  TextEditingController? loc;
+  TextEditingController? problem;
   DateTime selectedDate = DateTime.now();
 
   Future<void> _selectDate(BuildContext context) async {
@@ -31,13 +30,25 @@ class _BookingsState extends State<Bookings> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(" Book an appointment",
-              style: TextStyle(fontSize: 18))),
+        title: const Text(
+          " Book an appointment",
+          style: TextStyle(fontSize: 18),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new_sharp,
+            size: 30,
+          ),
+          onPressed: () {
+            context.read<BookingsScreenBloc>().appCubit.showHomeScreen();
+          },
+        ),
+      ),
       body: Container(
           color: Colors.teal,
           child: Padding(
@@ -66,9 +77,10 @@ class _BookingsState extends State<Bookings> {
                     border: Border.all(color: Colors.tealAccent, width: 2),
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                   ),
-                  margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: TextFormField(
-                    controller: Problem,
+                    controller: problem,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -85,22 +97,23 @@ class _BookingsState extends State<Bookings> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white30,
-                border: Border.all(color: Colors.tealAccent, width: 2),
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: TextFormField(
-                controller: Problem,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    label: Text("Problem"),
-                    contentPadding: EdgeInsets.only(left: 15)),
-              ),
-            ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white30,
+                    border: Border.all(color: Colors.tealAccent, width: 2),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  ),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: TextFormField(
+                    controller: problem,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        label: Text("Problem"),
+                        contentPadding: EdgeInsets.only(left: 15)),
+                  ),
+                ),
                 const SizedBox(height: 5),
                 const Text(
                   "kindly select your date and time for the appointment",
@@ -113,26 +126,25 @@ class _BookingsState extends State<Bookings> {
                   height: 20.0,
                 ),
 
-                 // Text("${selectedDate.toUtc()}".split(' ')[0]),
-                SizedBox(height: 20.0,),
+                // Text("${selectedDate.toUtc()}".split(' ')[0]),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 ElevatedButton(
                   onPressed: () => _selectDate(context),
-                  child: Text('Select date'),
+                  child: const Text('Select date'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
-                      elevation: 3// Background color
-                    ),
-                    onPressed: (){},
-                    child: Text("Confirm Booking"),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.teal, elevation: 3 // Background color
+                      ),
+                  onPressed: () {},
+                  child: const Text("Confirm Booking"),
                 )
-
-
-          ],
+              ],
             ),
           )),
     );
