@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854486226016",
+    "project_id": "mechanocar",
+    "storage_bucket": "mechanocar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854486226016:android:f75f5c369ace25b0d31f05",
+        "android_client_info": {
+          "package_name": "com.example.wasay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854486226016-n33udl2l3djbdq0uao4gsjm9gi3qp5ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD50RTCdtROtqGZmrkDiOiaEIvjiqqynpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854486226016-n33udl2l3djbdq0uao4gsjm9gi3qp5ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
