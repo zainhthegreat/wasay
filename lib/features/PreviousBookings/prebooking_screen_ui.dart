@@ -11,18 +11,16 @@ class _PreBookingsScreenUIState extends State<PreBookingsScreenUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Previous Bookings"),
+      appBar: AppBar(title: const Text("Previous Bookings"),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ListView(children: [
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+            ListView(children: const [
 
             ],)
-        ],),
-      ),
+      ],),
     );
   }
 }

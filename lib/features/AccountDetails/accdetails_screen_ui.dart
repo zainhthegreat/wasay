@@ -18,7 +18,7 @@ class _AccountsDetailsScreenUIState extends State<AccountsDetailsScreenUI> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                   child: Text(
                 "Account Details",
                 style: TextStyle(
@@ -31,8 +31,8 @@ class _AccountsDetailsScreenUIState extends State<AccountsDetailsScreenUI> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0,10.0 ),
                 child: Row(
-                  children: [
-                    const Text("Name", style: TextStyle(
+                  children: const [
+                    Text("Name", style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)
@@ -46,8 +46,8 @@ class _AccountsDetailsScreenUIState extends State<AccountsDetailsScreenUI> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0,10.0 ),
                 child: Row(
-                  children: [
-                    const Text("Email", style: TextStyle(
+                  children: const [
+                    Text("Email", style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)
@@ -61,8 +61,8 @@ class _AccountsDetailsScreenUIState extends State<AccountsDetailsScreenUI> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0,10.0 ),
                 child: Row(
-                  children: [
-                    const Text("Number", style: TextStyle(
+                  children: const [
+                    Text("Number", style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)
@@ -76,8 +76,8 @@ class _AccountsDetailsScreenUIState extends State<AccountsDetailsScreenUI> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0,10.0 ),
                 child: Row(
-                  children: [
-                    const Text("Potato", style: TextStyle(
+                  children: const [
+                    Text("Potato", style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)

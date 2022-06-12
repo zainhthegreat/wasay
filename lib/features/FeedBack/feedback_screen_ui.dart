@@ -7,13 +7,13 @@ class FeedBacksScreenUI extends StatefulWidget {
 }
 
 class _FeedBacksScreenUIState extends State<FeedBacksScreenUI> {
-  TextEditingController? Feedback;
+  TextEditingController? feedback;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FeedBack",
+        title: const Text("FeedBack",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
       ),
       body: Container(
@@ -22,26 +22,26 @@ class _FeedBacksScreenUIState extends State<FeedBacksScreenUI> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
+          const Center(
             child: Text("How do you like our Service?",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
-          SizedBox(height: 20),
-          Container(
+          const SizedBox(height: 20),
+          SizedBox(
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 //IconButton required
-                IconButton(onPressed: (){}, icon:  Icon(Icons.thumb_up, size: 50, color: Colors.tealAccent,)),
-                SizedBox(width: 15,),
-                IconButton(onPressed: (){}, icon:  Icon(Icons.thumb_down, size: 50, color: Colors.tealAccent,)),
+                IconButton(onPressed: (){}, icon:  const Icon(Icons.thumb_up, size: 50, color: Colors.tealAccent,)),
+                const SizedBox(width: 15,),
+                IconButton(onPressed: (){}, icon:  const Icon(Icons.thumb_down, size: 50, color: Colors.tealAccent,)),
 
             ],),
           ),
-          SizedBox(height: 12,),
+          const SizedBox(height: 12,),
           Center(child:
           Container(
             height: 140,
@@ -52,7 +52,7 @@ class _FeedBacksScreenUIState extends State<FeedBacksScreenUI> {
             ),
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: Feedback,
+              controller: feedback,
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
@@ -72,7 +72,7 @@ class _FeedBacksScreenUIState extends State<FeedBacksScreenUI> {
                 child: Expanded(
                   child: MaterialButton(
                       color: Colors.teal,
-                        onPressed: (){} , child: Text("Submit Feedback", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold) )
+                        onPressed: (){} , child: const Text("Submit Feedback", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold) )
                     ),
                 ),
               ),

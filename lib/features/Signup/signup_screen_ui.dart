@@ -78,7 +78,7 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
                     contentPadding: EdgeInsets.only(left: 15)),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: Colors.white30,
@@ -97,7 +97,7 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
                     contentPadding: EdgeInsets.only(left: 15)),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: Colors.white30,

@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_location_picker/google_map_location_picker.dart';
+import 'package:wasay/features/Bookings/bookings_screen_event.dart';
 
 import 'bookings_screen_bloc.dart';
 
@@ -12,26 +14,23 @@ class BookingsScreenUI extends StatefulWidget {
 }
 
 class _BookingsScreenUIState extends State<BookingsScreenUI> {
-  TextEditingController? loc;
   TextEditingController? problem;
-  DateTime selectedDate = DateTime.now();
+  LatLng? location;
+  DateTime? selectedDate;
+  String? date;
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        // help Zain
-      });
-    }
+  @override
+  initState() {
+    problem = TextEditingController();
+    location = const LatLng(0, 0);
+    selectedDate = DateTime.now();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -49,104 +48,149 @@ class _BookingsScreenUIState extends State<BookingsScreenUI> {
           },
         ),
       ),
-      body: Container(
-          color: Colors.teal,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                const Text(
-                  "Book your Maintenance with our trusted Mechanics",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  "Your Location",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white30,
-                    border: Border.all(color: Colors.tealAccent, width: 2),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: TextFormField(
-                    controller: problem,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        label: Text("Location"),
-                        contentPadding: EdgeInsets.only(left: 15)),
-                  ),
-                ),
+      backgroundColor: Colors.teal,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                "Book your Maintenance with our trusted Mechanics",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const SizedBox(height: 15),
+              MaterialButton(
+                elevation: 20,
+                padding: EdgeInsets.zero,
+                onPressed: () async {
+                  var mapLocation = await showLocationPicker(
+                      context, "AIzaSyAXgg20hPxSIHglnEaF16_iEpU6_LcioIM",
+                      initialCenter: const LatLng(31.1975844, 29.9598339),
+                      myLocationButtonEnabled: true,
+                      layersButtonEnabled: true,
+                      desiredAccuracy: LocationAccuracy.bestForNavigation,
+                      countries: ['PK'],
+                      requiredGPS: true);
 
-                const SizedBox(height: 5),
-                const Text(
-                  "Describe your maintenance problem",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Container(
+                  location = LatLng(mapLocation?.latLng.latitude ?? -999,
+                      mapLocation?.latLng.longitude ?? -99);
+                },
+                child: Container(
+                  alignment: const Alignment(-0.5, 0),
+                  width: size.width,
+                  height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.white30,
+                      border: Border.all(color: Colors.tealAccent, width: 2),
+                      color: Colors.white,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  child: const Text(
+                    "Enter Your Location",
+                    style: TextStyle(fontSize: 20, color: Colors.teal),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                "Describe your maintenance problem",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
                     border: Border.all(color: Colors.tealAccent, width: 2),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: TextFormField(
-                    controller: problem,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        label: Text("Problem"),
-                        contentPadding: EdgeInsets.only(left: 15)),
-                  ),
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(Radius.circular(20))),
+                child: TextFormField(
+                  controller: problem,
+                  maxLines: null,
+                  minLines: 2,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      label: Text("Problem"),
+                      contentPadding: EdgeInsets.only(left: 15)),
                 ),
-                const SizedBox(height: 5),
-                const Text(
-                  "kindly select your date and time for the appointment",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                "Kindly select your date and time for the appointment",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const SizedBox(
+                height: 40.0,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate!,
+                        firstDate: DateTime(2015, 8),
+                        lastDate: DateTime(2101));
 
-                // Text("${selectedDate.toUtc()}".split(' ')[0]),
-                const SizedBox(
-                  height: 20.0,
+                    // ignore: use_build_context_synchronously
+                    context
+                        .read<BookingsScreenBloc>()
+                        .add(SelectDateEvent(date: selectedDate));
+                  },
+                  child: Text(
+                    context.watch<BookingsScreenBloc>().state.dateString ??
+                        "Select Date",
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () => _selectDate(context),
-                  child: const Text('Select date'),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.teal, elevation: 3 // Background color
-                      ),
-                  onPressed: () {},
-                  child: const Text("Confirm Booking"),
-                )
-              ],
-            ),
-          )),
+              ),
+              const SizedBox(
+                height: 60,
+              ),
+              Center(
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, elevation: 3 // Background color
+                        ),
+                    onPressed: () {
+                      context.read<BookingsScreenBloc>().add(
+                            ConfirmBookingEvent(
+                              location: location,
+                              date: selectedDate,
+                              problem: problem?.text ?? "",
+                            ),
+                          );
+                    },
+                    child: SizedBox(
+                      width: size.width / 1.25,
+                      height: 70,
+                      child:
+                          context.watch<BookingsScreenBloc>().state.loading ==
+                                  true
+                              ? const Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Center(
+                                  child: Text(
+                                    "Confirm Booking",
+                                    style: TextStyle(fontSize: 22),
+                                  ),
+                                ),
+                    )),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
