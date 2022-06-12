@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wasay/app_repo.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:map_location_picker/generated/l10n.dart' as location_picker;
+import 'package:wasay/features/AccountDetails/accdetails_screen_ui.dart';
+import 'package:wasay/features/FeedBack/feedback_screen_ui.dart';
+import 'package:wasay/features/Signup/signup_screen_ui.dart';
 
 import 'app_cubit.dart';
 import 'app_navigator.dart';
+import 'app_repo.dart';
+import 'features/Bookings/bookings_screen_ui.dart';
+import 'features/Home/home_screen_ui.dart';
+
+
+
 
 void main() {
   runApp(const MyApp());
@@ -14,19 +24,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        location_picker.S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const <Locale>[
+        Locale('en', ''),
+        Locale('ar', ''),
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.teal,
         backgroundColor: Colors.deepPurple,
       ),
-      home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
-        child: BlocProvider(
-          create: (BuildContext context) =>
-              AppCubit(appRepo: context.read<AppRepo>()),
-          child: const AppNavigator(),
-        ),
-      )
+
+        home: HomeScreenUI(),
+
+      // home: RepositoryProvider(create: (BuildContext context)=> AppRepo(),
+      //   child: BlocProvider(
+      //     create: (BuildContext context) =>
+      //         AppCubit(appRepo: context.read<AppRepo>()),
+      //     child: const AppNavigator(),
+      //   ),
+      // )
 
     );
   }

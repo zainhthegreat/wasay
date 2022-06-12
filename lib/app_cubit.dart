@@ -15,4 +15,14 @@ class AppCubit extends Cubit<AppState>
   AppCubit.signUp({required this.appRepo}): super(SignUpAppState());
 
   AppCubit.logIn({required this.appRepo}): super(LoginAppState());
+
+  AppCubit.home({required this.appRepo}): super(HomeAppState());
+
+
+
+  //functions
+  showSignUpScreen()=>emit(SignUpAppState());
+  showLoginScreen()=>emit(LoginAppState());
+  showHomeScreen()=> emit(HomeAppState());
+
 }

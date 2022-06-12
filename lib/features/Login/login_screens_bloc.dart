@@ -18,13 +18,23 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent,LoginScreenState>
   LoginScreenBloc({required this.appCubit,required this.appRepo}): super(LoginScreenState())
   {
     on<LoginButtonClickedEvent>(login);
-    //on<NavigateToSignUpScreenEvent>();
+    on<NavigateToSignUpScreenEvent>(navigateToSignUp);
+    on<NavigateToHomeScreenEvent>(navigateToHome);
   }
 
 
 
 
   FutureOr<void> login(LoginButtonClickedEvent event, Emitter<LoginScreenState> emit) {
-    log("Do something");
+   state.copyWith(email: event.email, password: event.password);
+  }
+
+
+  FutureOr<void> navigateToSignUp(NavigateToSignUpScreenEvent event, Emitter<LoginScreenState> emit) {
+    appCubit.showSignUpScreen();
+  }
+
+  FutureOr<void> navigateToHome(NavigateToHomeScreenEvent event, Emitter<LoginScreenState> emit) {
+    appCubit.showHomeScreen();
   }
 }
