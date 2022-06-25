@@ -16,3 +16,13 @@ class AccountDetailsAppState extends AppState{}
 class PreviousBookingsAppState extends AppState{}
 
 class FeedbackAppState extends AppState{}
+
+class HotlineAppState extends AppState{}
+
+class TowTruckingAppState extends AppState{}
+
+class ContactUsAppState extends AppState{}
+
+
+
+

@@ -7,11 +7,11 @@ import 'package:wasay/features/PreviousBookings/prebooking_screen_state.dart';
 import '../../app_cubit.dart';
 import '../../app_repo.dart';
 
-class PreBookingScreenBloc extends Bloc<PreBookingEvents, PreBookingState>{
+class PreviousBookingScreenBloc extends Bloc<PreBookingEvents, PreBookingState>{
 
   AppCubit appCubit;
   AppRepo appRepo;
 
-  PreBookingScreenBloc({required this.appRepo,required this.appCubit}): super(PreBookingState());
+  PreviousBookingScreenBloc({required this.appRepo,required this.appCubit}): super(PreBookingState());
 
 }

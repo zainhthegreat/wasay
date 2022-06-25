@@ -22,6 +22,9 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
   initState() {
     email = TextEditingController();
     password = TextEditingController();
+    number = TextEditingController();
+    userName = TextEditingController();
+
     super.initState();
   }
 
@@ -88,7 +91,6 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextFormField(
                 controller: number,
-                obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 decoration: const InputDecoration(
@@ -107,7 +109,6 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextFormField(
                 controller: userName,
-                obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 decoration: const InputDecoration(
@@ -127,7 +128,7 @@ class _SignUpScreenUIState extends State<SignUpScreenUI> {
                 // TODO to call an event always use READ
                 if (email!.text.isNotEmpty) {
                   if (email!.text.contains("@") && password!.text.isNotEmpty && number!.text.isNotEmpty && userName!.text.isNotEmpty) {
-                  context.read<SignUpScreenBloc>().add(SignUpButtonClickedEvent(email: email!.text, password: password!.text));
+                  context.read<SignUpScreenBloc>().add(SignUpButtonClickedEvent(email: email!.text, password: password!.text, number: number!.text, userName: userName!.text));
                   }
                   else{
                     const snackBar = SnackBar(

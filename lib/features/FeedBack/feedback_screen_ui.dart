@@ -1,21 +1,35 @@
 import "package:flutter/material.dart";
-class FeedBacksScreenUI extends StatefulWidget {
-  const FeedBacksScreenUI({Key? key}) : super(key: key);
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wasay/features/FeedBack/feedback_screen_bloc.dart';
+class FeedBackScreenUI extends StatefulWidget {
+  const FeedBackScreenUI({Key? key}) : super(key: key);
 
   @override
-  State<FeedBacksScreenUI> createState() => _FeedBacksScreenUIState();
+  State<FeedBackScreenUI> createState() => _FeedBackScreenUIState();
 }
 
-class _FeedBacksScreenUIState extends State<FeedBacksScreenUI> {
+class _FeedBackScreenUIState extends State<FeedBackScreenUI> {
   TextEditingController? feedback;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("FeedBack",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
-      ),
+        appBar: AppBar(
+          title: const Text(
+            " Feedback",
+            style: TextStyle(fontSize: 24),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new_sharp,
+              size: 30,
+            ),
+            onPressed: () {
+              context.read<FeedBackScreenBloc>().appCubit.showHomeScreen();
+            },
+          ),
+        ),
       body: Container(
         color: Colors.blueGrey,
       child: Column(

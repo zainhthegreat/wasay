@@ -20,6 +20,19 @@ class AppCubit extends Cubit<AppState>
 
   AppCubit.bookings({required this.appRepo}): super(BookingsAppState());
 
+  AppCubit.hotline({required this.appRepo}): super(HotlineAppState());
+
+  AppCubit.towTrucking({required this.appRepo}): super(TowTruckingAppState());
+
+  AppCubit.contactus({required this.appRepo}): super(ContactUsAppState());
+
+  AppCubit.accountDetails({required this.appRepo}): super(AccountDetailsAppState());
+
+  AppCubit.previousBookings({required this.appRepo}): super(PreviousBookingsAppState());
+
+  AppCubit.feedback({required this.appRepo}): super(FeedbackAppState());
+
+
 
 
   //functions
@@ -27,7 +40,12 @@ class AppCubit extends Cubit<AppState>
   showLoginScreen()=>emit(LoginAppState());
   showHomeScreen()=> emit(HomeAppState());
   showBookingScreen()=> emit(BookingsAppState());
-
+  showHotlineScreen()=> emit(HotlineAppState());
+  showTowTruckingScreen()=> emit(TowTruckingAppState());
+  showContactUsScreen()=> emit(ContactUsAppState());
+  showAccountDetailsScreen()=> emit(AccountDetailsAppState());
+  showFeedbackScreen()=> emit(FeedbackAppState());
+  showPreviousBookingScreen()=> emit(PreviousBookingsAppState());
 
 
 

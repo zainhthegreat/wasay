@@ -19,6 +19,7 @@ class _LoginScreenUIState extends State<LoginScreenUI> {
   initState() {
     email = TextEditingController();
     password = TextEditingController();
+
     super.initState();
   }
 
@@ -89,7 +90,7 @@ class _LoginScreenUIState extends State<LoginScreenUI> {
                   if (email!.text.contains("@") && password!.text.isNotEmpty) {
                     context.read<LoginScreenBloc>().add(
                           LoginButtonClickedEvent(
-                              email: email!.text, password: password!.text),
+                              email: email!.text, password: password!.text ),
                         );
 
                     context.read<LoginScreenBloc>().add(
